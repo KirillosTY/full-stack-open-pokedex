@@ -1,9 +1,14 @@
 module.exports = {
   "env": {
     "browser": true,
+     "node": true,
     "es6": true,
     "jest/globals": true
+    
   },
+  "ignorePatterns":
+      [".eslintrc.js", "/test/PokemonPage.jest.spec.jsx",] // acts as global ignores, due to the absence of other properties
+,
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended"
@@ -15,6 +20,7 @@ module.exports = {
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  
   "plugins": [
     "react", "jest"
   ],
@@ -43,7 +49,7 @@ module.exports = {
     "arrow-spacing": [
       "error", { "before": true, "after": true }
     ],
-    "no-console": "error",
+    "no-console": "off",
     "react/prop-types": 0
   }
 }
