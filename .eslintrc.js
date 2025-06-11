@@ -6,8 +6,9 @@ module.exports = {
     "jest/globals": true
     
   },
+
   "ignorePatterns":
-      [".eslintrc.js", "/test/PokemonPage.jest.spec.jsx",] // acts as global ignores, due to the absence of other properties
+      [".eslintrc.js","playwright.config.js", "/test/PokemonPage.jest.spec.jsx",] // acts as global ignores, due to the absence of other properties
 ,
   "extends": [
     "eslint:recommended",
