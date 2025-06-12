@@ -13,6 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
       - name: Install dependencies 
         run: npm install  
       - name: Install Playwright Chromium
@@ -25,3 +27,7 @@ jobs:
         run: npm run test
       - name: e2e-tests
         run: npm run testPW
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
