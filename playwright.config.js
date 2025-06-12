@@ -2,7 +2,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-
+ testIgnore: ['test/**'],
+ testDir: 'tests',
   /* Configure projects for major browsers */
   projects: [
     {
