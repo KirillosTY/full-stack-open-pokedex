@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+require('dotenv')
+
+
 
 // get the port from env variable
 const PORT = process.env.PORT || 5000
