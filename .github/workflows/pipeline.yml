@@ -50,7 +50,7 @@ jobs:
       -steps:
         - uses: rjstone/discord-webhook-notify@v2.1.1
         - if: success()
-        with: 
+          with: 
             webhookUrl: ${{ secrets.disco_url }}
             severity: info
             details: All tests passed!
