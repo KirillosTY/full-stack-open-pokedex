@@ -47,10 +47,10 @@ jobs:
   discord_webhook:
     needs: [tag_release]
     runs-on: ubuntu-22.04
-      -steps:
-        - uses: rjstone/discord-webhook-notify@v2.1.1
-        - if: success()
-          with: 
-            webhookUrl: ${{ secrets.disco_url }}
-            severity: info
-            details: All tests passed!
+    steps:
+      - uses: rjstone/discord-webhook-notify@v2.1.1
+        if: success()
+        with: 
+          webhookUrl: ${{ secrets.disco_url }}
+          severity: info
+          details: All tests passed!
