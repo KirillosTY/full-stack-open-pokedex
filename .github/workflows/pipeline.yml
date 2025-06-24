@@ -7,6 +7,9 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize] #Without the 3 rows the events wont trigger on pull requests
+
+permissions: read-all
+
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-22.04
@@ -44,12 +47,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  discord_webhook:
+  discord_webhook_success:
     needs: [tag_release]
     runs-on: ubuntu-22.04
     steps:
       - uses: rjstone/discord-webhook-notify@v2
         if: success()
+        with: 
+          webhookUrl: ${{ secrets.disco_url }}
+          username: KirillosTY
+          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
+          severity: info 
+          color: '#ff00aa'
+          title: PR test
+          details: info
+
+          
+  discord_webhook_failure:
+   
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: rjstone/discord-webhook-notify@v2
+        if: ${{success() && }}
         with: 
           webhookUrl: ${{ secrets.disco_url }}
           username: KirillosTY
