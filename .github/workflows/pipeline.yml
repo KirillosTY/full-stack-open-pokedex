@@ -57,5 +57,4 @@ jobs:
           severity: info 
           color: '#ff00aa'
           title: PR test
-          description: "Repo: ${{ github.repository }} | Actor: ${{ github.actor }}"
-
+          details: info
