@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: rjstone/discord-webhook-notify@v2
-        if: ${{success() && }}
+        if: ${{success() }}
         with: 
           webhookUrl: ${{ secrets.disco_url }}
           username: KirillosTY
