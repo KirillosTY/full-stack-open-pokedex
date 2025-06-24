@@ -52,5 +52,9 @@ jobs:
         if: success()
         with: 
           webhookUrl: ${{ secrets.disco_url }}
-          severity: info
-          details: All tests passed!
+          username: KirillosTY
+          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
+          text: Testing
+          severity: info #
+          color: '#ff00aa'
+          title: PR test
