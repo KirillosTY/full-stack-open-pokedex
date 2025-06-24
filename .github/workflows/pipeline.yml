@@ -48,13 +48,14 @@ jobs:
     needs: [tag_release]
     runs-on: ubuntu-22.04
     steps:
-      - uses: rjstone/discord-webhook-notify@v2.1.1
+      - uses: rjstone/discord-webhook-notify@v2
         if: success()
         with: 
           webhookUrl: ${{ secrets.disco_url }}
           username: KirillosTY
           avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
-          text: Testing
-          severity: info #
+          severity: info 
           color: '#ff00aa'
           title: PR test
+          description: "Repo: ${{ github.repository }} | Actor: ${{ github.actor }}"
+
