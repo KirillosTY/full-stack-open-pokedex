@@ -18,7 +18,7 @@ describe('Single Pokemon', () => {
 
 
     await page.goto('/pokemon/ivysaur/')
-    await page.waitForSelector('[data-testid="pokemon-details-ivysaur"]')
+    await page.waitForSelector('[data-testid="pokemon-details-ivysaury"]')
     const abilities = page.getByTestId('ability-name')
     await expect(page.getByTestId('ivysaur')).toHaveText('ivysaur')
     await expect(abilities.nth(1)).toHaveText('chlorophyll')
