@@ -89,7 +89,7 @@ jobs:
 
   tag_release:  
     needs: [simple_deployment_pipeline]
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+    if: ${{ github.event_name == 'push'  && github.ref == 'refs/heads/main' && !contains(toJson(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
