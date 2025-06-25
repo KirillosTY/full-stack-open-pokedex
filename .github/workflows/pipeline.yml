@@ -7,12 +7,18 @@ on:
   pull_request:
     branches: [main]
     types: [opened, synchronize] #Without the 3 rows the events wont trigger on pull requests
+
+permissions: read-all
+
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-22.04
     steps:
+
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+      - uses: rjstone/discord-webhook-notify@v2
+
         with:
           node-version: '20'
       - uses: superfly/flyctl-actions/setup-flyctl@master
@@ -33,6 +39,54 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      
+      
+      - name: succesfully building
+        if: success()
+        uses: rjstone/discord-webhook-notify@v2
+
+        with: 
+          webhookUrl: ${{ secrets.disco_url }}
+          username: KirillosTY
+          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
+          severity: info 
+          color: '#008000'
+          title: Build succesfull
+          description: |
+           **Repository**: [${{ github.repository }}](https://github.com/${{ github.repository }})
+            **Workflow**: ${{ github.workflow }}
+            **Run Number**: ${{ github.run_number }}
+            **Run ID**: [${{ github.run_id }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            **Event**: ${{ github.event_name }}
+            **Actor**: ${{ github.actor }}
+            **Ref**: ${{ github.ref }}
+            **Commit**: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+            **Job**: ${{ github.job }}
+      - name: build failure
+        if: failure()
+        uses: rjstone/discord-webhook-notify@v2
+
+        with: 
+          webhookUrl: ${{ secrets.disco_url }}
+          username: KirillosTY
+          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
+          severity: info 
+          color: '#FF0000'
+          title: Deployment failure
+          description: |
+            **Repository**: [${{ github.repository }}](https://github.com/${{ github.repository }})
+            **Workflow**: ${{ github.workflow }}
+            **Run Number**: ${{ github.run_number }}
+            **Run ID**: [${{ github.run_id }}](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            **Event**: ${{ github.event_name }}
+            **Actor**: ${{ github.actor }}
+            **Ref**: ${{ github.ref }}
+            **Commit**: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+            **Job**: ${{ github.job }}
+
+
+
+
   tag_release:  
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
@@ -43,3 +97,5 @@ jobs:
         uses: anothrNick/github-tag-action@1.73.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+ 
