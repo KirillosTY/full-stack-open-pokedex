@@ -50,8 +50,8 @@ jobs:
           username: KirillosTY
           avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
           severity: info 
-          color: '#ff00aa'
-          title: PR test
+          color: '#008000'
+          title: Build succesfull
           description: |
            **Repository**: [${{ github.repository }}](https://github.com/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
@@ -71,8 +71,8 @@ jobs:
           username: KirillosTY
           avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
           severity: info 
-          color: '#ff00aa'
-          title: PR test
+          color: '#FF0000'
+          title: Deployment failure
           description: |
             **Repository**: [${{ github.repository }}](https://github.com/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
@@ -98,45 +98,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  discord_webhook_success:
-    needs: [tag_release]
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: rjstone/discord-webhook-notify@v2
-        if: success()
-        with: 
-          webhookUrl: ${{ secrets.disco_url }}
-          username: KirillosTY
-          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
-          severity: info 
-          color: '#ff00aa'
-          title: PR test
-          description: |
-            **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
-            **Workflow**: ${{ github.workflow }}
-            **Event**: ${{ github.event_name }}
-            **Triggering Actor**: ${{ github.actor }}
-            **Jobs**: ${{github.job}}
-            **severity**: warn
-
-          
-  discord_webhook_failure:
-    needs: [simple_deployment_pipeline,tag_release]
-    runs-on: ubuntu-22.04
-    steps:
-      - uses: rjstone/discord-webhook-notify@v2
-        if: ${{failure()}}
-        with: 
-          webhookUrl: ${{ secrets.disco_url }}
-          username: KirillosTY
-          avatarUrl: https://igormiranda.com.br/wp-content/uploads/2021/08/Rick-Astley-Rickroll-Never-Gonna-Give-You-Up.jpg
-          severity: info 
-          color: '#ff00aa'
-          title: PR test
-          description: |
-            **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
-            **Workflow**: ${{ github.workflow }}
-            **Event**: ${{ github.event_name }}
-            **Triggering Actor**: ${{ github.actor }}
-            **Jobs**: ${{github.job}}
-            **severity**: warn
+ 
