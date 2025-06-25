@@ -60,7 +60,6 @@ jobs:
           severity: info 
           color: '#ff00aa'
           title: PR test
-          description: info
           details: |
             **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
@@ -83,6 +82,7 @@ jobs:
           severity: info 
           color: '#ff00aa'
           title: PR test
+
           details: |
             **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
