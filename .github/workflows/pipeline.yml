@@ -60,16 +60,18 @@ jobs:
           severity: info 
           color: '#ff00aa'
           title: PR test
-          description: |
+          description: info
+          details: |
             **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
             **Event**: ${{ github.event_name }}
             **Triggering Actor**: ${{ github.actor }}
             **Jobs**: ${{github.job}}
+            **severity**: warn
 
           
   discord_webhook_failure:
-    needs: [simple_deployment_pipeline]
+    needs: [simple_deployment_pipeline,tag_release]
     runs-on: ubuntu-22.04
     steps:
       - uses: rjstone/discord-webhook-notify@v2
@@ -81,9 +83,10 @@ jobs:
           severity: info 
           color: '#ff00aa'
           title: PR test
-          description: |
+          details: |
             **Repository**: [${{ github.repository }}](https://github.com/KirillosTY/full-stack-open-pokedex/${{ github.repository }})
             **Workflow**: ${{ github.workflow }}
             **Event**: ${{ github.event_name }}
             **Triggering Actor**: ${{ github.actor }}
             **Jobs**: ${{github.job}}
+            **severity**: warn
