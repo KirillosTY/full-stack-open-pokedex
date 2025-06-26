@@ -2,7 +2,7 @@ name: Hello pokesite!
 
 on:
   schedule:
-    - cron: '10 14 * * *'
+    - cron: '30 10 * * *'
 jobs:
   hello_world_job:
     runs-on: ubuntu-22.04
