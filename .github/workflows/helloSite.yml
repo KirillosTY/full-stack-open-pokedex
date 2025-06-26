@@ -1,6 +1,13 @@
 name: Hello pokesite!
 
 on:
+  push:
+    branches:
+      - main
+      workflow_run:
+      workflows: ["Deployment pipeline"]
+      types:
+        - completed
   schedule:
     - cron: '30 10 * * *'
 jobs:
