@@ -1,17 +1,16 @@
 name: Hello pokesite!
 
 on:
-  push:
-    branches:
-      - main
-      workflow_run:
-      workflows: ["Deployment pipeline"]
-      types:
-        - completed
+  workflow_run:
+    workflows: ["Deployment pipeline"]
+    types:
+      - completed
   schedule:
     - cron: '30 10 * * *'
 jobs:
   hello_world_job:
+    if: ${{ github.event.workflow_run.head_branch == 'main' }}
+
     runs-on: ubuntu-22.04
     steps:
       - name: Log Date
